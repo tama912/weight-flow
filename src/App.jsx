@@ -97,7 +97,7 @@ html, body {
          background:radial-gradient(circle, rgba(96,165,250,0.05) 0%, transparent 65%); }
 
 /* ── App shell ── */
-.app { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; }
+.app { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; max-width:100%; overflow-x:hidden; }
 
 /* ── Sidebar nav ── */
 .sidebar {
@@ -145,6 +145,7 @@ html, body {
   margin-left:176px;
   min-height:100vh;
   display:flex; flex-direction:column;
+  overflow-x:hidden;
 }
 
 .topbar {
@@ -717,6 +718,7 @@ html, body {
   border-radius: var(--r-lg);
   padding: 22px 28px 12px;
   box-shadow: var(--sh);
+  overflow: hidden;
 }
 .home-mini-chart-head {
   display: flex; justify-content: space-between; align-items: center;
