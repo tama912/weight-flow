@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WeightFlow - シンプルな体重管理アプリ。毎日の体重・歩数・食事を記録して、目標体重への道のりを可視化します。">
+  <title>WeightFlow — サポート</title>
+  <style>
+    :root {
+      --bg:      #ffffff;
+      --bg2:     #f5f5f7;
+      --bg3:     #e8e8ed;
+      --text:    #1d1d1f;
+      --text2:   #6e6e73;
+      --text3:   #86868b;
+      --border:  rgba(0,0,0,0.1);
+      --mint:    #00c49a;
+      --mintd:   #00a882;
+      --card:    #ffffff;
+      --radius:  18px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:     #000000;
+        --bg2:    #080e1a;
+        --bg3:    #0d1525;
+        --text:   #f5f5f7;
+        --text2:  #9ab0cc;
+        --text3:  #4e6480;
+        --border: rgba(255,255,255,0.1);
+        --mint:   #00e5b0;
+        --mintd:  #00c49a;
+        --card:   #0d1525;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (prefers-color-scheme: dark) {
+      nav { background: rgba(0,0,0,0.7); }
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo em {
+      color: var(--mint);
+      font-style: normal;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--mint); }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 96px 24px 80px;
+      background: var(--bg);
+    }
+    .hero-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #0e1d30 0%, #02040a 100%);
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 40px rgba(0,229,176,0.2), 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .hero-icon svg {
+      width: 52px;
+      height: 52px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .hero h1 em {
+      color: var(--mint);
+      font-style: normal;
+    }
+    .hero p {
+      font-size: 19px;
+      color: var(--text2);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--mint);
+      color: #02100a;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 32px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: background .18s, transform .12s;
+    }
+    .btn:hover {
+      background: var(--mintd);
+      transform: translateY(-1px);
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 80px 24px;
+    }
+    section:nth-child(even) {
+      background: var(--bg2);
+    }
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+    .section-body {
+      font-size: 17px;
+      color: var(--text2);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* ── Features grid ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    @media (max-width: 640px) {
+      .features { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .feature-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── Contact form ── */
+    .contact-form {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 560px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text2);
+    }
+    input, textarea, select {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 16px;
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--mint);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .submit-btn {
+      background: var(--mint);
+      color: #02100a;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border: none;
+      border-radius: 980px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .18s, transform .12s;
+      align-self: flex-start;
+    }
+    .submit-btn:hover {
+      background: var(--mintd);
+      transform: translateY(-1px);
+    }
+    .contact-alt {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text3);
+    }
+    .contact-alt a {
+      color: var(--mint);
+      text-decoration: none;
+    }
+
+    /* ── Privacy ── */
+    .privacy-content {
+      margin-top: 40px;
+    }
+    .privacy-section {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .privacy-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .privacy-section h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .privacy-section p {
+      font-size: 16px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .privacy-section p:last-child { margin-bottom: 0; }
+    .privacy-section ul {
+      margin: 10px 0 12px 20px;
+      color: var(--text2);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .privacy-section li { margin-bottom: 4px; }
+    .privacy-date {
+      font-size: 14px;
+      color: var(--text3);
+      margin-bottom: 36px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .footer-logo em { color: var(--mint); font-style: normal; }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--mint); }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text3);
+      margin-top: 16px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .hero { padding: 64px 20px 56px; }
+      .hero h1 { font-size: 36px; letter-spacing: -1px; }
+      .hero p { font-size: 17px; }
+      .section-title { font-size: 28px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#top">Weight<em>Flow</em></a>
+      <ul class="nav-links">
+        <li><a href="#features">機能</a></li>
+        <li><a href="#support">サポート</a></li>
+        <li><a href="#privacy">プライバシー</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" id="top">
+    <div class="hero-icon">
+      <!-- Flow line chart icon -->
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline
+          points="6,40 16,28 26,32 36,16 46,10"
+          stroke="#00e5b0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+          fill="none"
+        />
+        <circle cx="46" cy="10" r="3.5" fill="#00e5b0"/>
+        <line x1="6" y1="46" x2="46" y2="46" stroke="rgba(0,229,176,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Weight<em>Flow</em></h1>
+    <p>シンプルに続ける、体重管理。毎日の記録が、目標への道を照らします。</p>
+    <a class="btn" href="https://apps.apple.com/app/weightflow" target="_blank" rel="noopener">
+      App Store で入手
+    </a>
+  </div>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">シンプルで続けやすい</h2>
+      <p class="section-body">余計な機能は削ぎ落とし、毎日の体重記録に集中できる設計。グラフで推移を確認し、目標体重への進捗を一目で把握できます。</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">⚖️</div>
+          <div class="feature-title">毎日の体重記録</div>
+          <div class="feature-desc">体重・歩数・食事メモを一画面でまとめて記録。Enterキー1発で保存。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">推移グラフ</div>
+          <div class="feature-desc">7日・30日・90日の体重推移をグラフで確認。傾向を自動でコメント表示。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">目標体重管理</div>
+          <div class="feature-desc">目標体重を設定して進捗率を表示。BMI・連続記録もリアルタイム更新。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">プライバシー優先</div>
+          <div class="feature-desc">データはすべてデバイス内に保存。サーバーへの送信は一切ありません。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌙</div>
+          <div class="feature-title">ダークモード対応</div>
+          <div class="feature-desc">目に優しいダークテーマを採用。夜間の記録も快適に。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <div class="feature-title">iPhone 最適化</div>
+          <div class="feature-desc">モバイルファーストの設計。ボトムナビで片手でも快適に操作できます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support / Contact -->
+  <section id="support">
+    <div class="section-inner">
+      <div class="section-label">Support</div>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-body">ご不明点・ご要望・不具合報告などはこちらからお気軽にどうぞ。できる限り迅速にご対応いたします。</p>
+
+      <form class="contact-form" action="https://formsubmit.co/tamafactory5@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="[WeightFlow] お問い合わせ">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://tama912.github.io/weightflow-support/?sent=1">
+
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" placeholder="example@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="category">お問い合わせ種別</label>
+          <select id="category" name="category">
+            <option value="bug">不具合の報告</option>
+            <option value="feature">機能リクエスト</option>
+            <option value="question">使い方について</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">内容</label>
+          <textarea id="message" name="message" placeholder="詳細をご記入ください..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">送信する</button>
+      </form>
+
+      <p class="contact-alt">
+        メールでのお問い合わせは
+        <a href="mailto:tamafactory5@gmail.com">tamafactory5@gmail.com</a> まで
+      </p>
+    </div>
+  </section>
+
+  <!-- Privacy Policy -->
+  <section id="privacy">
+    <div class="section-inner">
+      <div class="section-label">Privacy Policy</div>
+      <h2 class="section-title">プライバシーポリシー</h2>
+
+      <p class="privacy-date">最終更新日：2026年6月22日</p>
+
+      <div class="privacy-content">
+
+        <div class="privacy-section">
+          <h3>1. はじめに</h3>
+          <p>WeightFlow（以下「本アプリ」）は、ユーザーの体重・歩数・食事メモを記録・管理するためのアプリケーションです。</p>
+          <p>本ポリシーは、本アプリにおける個人情報の取り扱いについて説明します。本アプリをご利用いただく前に、必ずお読みください。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>2. 収集する情報</h3>
+          <p>本アプリは、以下の情報をデバイス内のローカルストレージにのみ保存します。</p>
+          <ul>
+            <li>日付ごとの体重（kg）</li>
+            <li>歩数</li>
+            <li>食事メモ（任意入力）</li>
+            <li>目標体重（任意設定）</li>
+            <li>身長（BMI算出のため、任意設定）</li>
+          </ul>
+          <p><strong>これらのデータはすべてお使いのデバイス内にのみ保存され、開発者を含む第三者のサーバーへ送信されることは一切ありません。</strong></p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>3. 収集しない情報</h3>
+          <p>本アプリは以下の情報を収集しません。</p>
+          <ul>
+            <li>氏名・住所・電話番号などの個人を特定できる情報</li>
+            <li>位置情報</li>
+            <li>カメラ・マイクへのアクセス</li>
+            <li>連絡先・カレンダー等のシステムデータ</li>
+            <li>デバイスの識別子（IDFA等）</li>
+            <li>クラッシュレポートや利用状況の分析データ</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h3>4. データの保存場所と管理</h3>
+          <p>入力されたすべてのデータは、お使いのデバイスのローカルストレージ（IndexedDB / localStorage）に保存されます。</p>
+          <p>アプリをアンインストールすると、保存されたすべてのデータが削除されます。開発者はデータの復元を行うことができません。データのバックアップはユーザー自身の責任において管理してください。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>5. 第三者へのデータ提供</h3>
+          <p>本アプリは、いかなる第三者（広告会社、分析サービス、パートナー企業等）にも、ユーザーのデータを提供・販売・共有しません。</p>
+          <p>本アプリには広告は表示されず、広告ネットワークへのSDK組み込みも行っておりません。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>6. アナリティクス・トラッキング</h3>
+          <p>本アプリはGoogle Analytics、Firebase、AppsFlyer等のアナリティクスツール、およびトラッキングSDKを一切使用していません。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>7. 子どものプライバシー</h3>
+          <p>本アプリは13歳未満のお子様を対象としたサービスではありません。13歳未満の方からの個人情報を意図的に収集することはありません。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>8. Apple ヘルスケア連携</h3>
+          <p>現バージョンの本アプリは、Apple ヘルスケア（HealthKit）との連携を行っておりません。将来的に連携機能を追加する場合は、本ポリシーを更新の上、ユーザーへ明示的に同意を求めます。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>9. プライバシーポリシーの変更</h3>
+          <p>本ポリシーは、法令の改正やアプリのアップデートに伴い変更されることがあります。重要な変更がある場合は、アプリのアップデートリリースノートまたはこのページにてお知らせします。</p>
+          <p>変更後もアプリをご利用いただいた場合、変更後のポリシーに同意いただいたものとみなします。</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>10. お問い合わせ</h3>
+          <p>プライバシーポリシーに関するご質問・ご意見は、下記までお問い合わせください。</p>
+          <p>
+            メール：<a href="mailto:tamafactory5@gmail.com" style="color: var(--mint); text-decoration: none;">tamafactory5@gmail.com</a><br>
+            対応言語：日本語・英語
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Weight<em>Flow</em></div>
+      <nav class="footer-links">
+        <a href="#features">機能</a>
+        <a href="#support">サポート</a>
+        <a href="#privacy">プライバシーポリシー</a>
+        <a href="mailto:tamafactory5@gmail.com">お問い合わせ</a>
+      </nav>
+      <p class="footer-copy">© 2026 WeightFlow. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
